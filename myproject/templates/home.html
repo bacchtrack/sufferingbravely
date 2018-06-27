@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+<!--    <meta charset="utf-8"> -->
+    <title>Caribbean Content</title>
+  </head>
+  <body>
+    <h1>Caribbean Content</h1>
+
+<ol>
+{% for link in object_list %}
+    <li> [{{link.votes}}]
+        <a href="{{link.url}}">
+            <b>{{link.title}}<b>
+        </a>
+    </li>
+{% endfor %}
+</ol>
+<!--
+    {% for link in links %}
+      {{ link.title }} <br>
+    {% endfor %}
+-->
+  </body>
+</html>

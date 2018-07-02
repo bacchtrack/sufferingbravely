@@ -3,7 +3,10 @@
 {% block content %}
 <h2><a href="{{ object.url }}">{{ object.title }}</a></h2>
 
-
+{% if object.submitter == user %}
+<a href="{% url 'link_update' pk=object.pk %}">Edit</a>|
+<a href="{% url 'link_delete' pk=object.pk %}">Delete</a>
+{% endif %}
 <p>Submitted by {{object.submitter}}</p>
 
 <div class="desc">

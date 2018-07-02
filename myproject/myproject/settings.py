@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts',
     'cbeancontent',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
@@ -123,5 +124,6 @@ STATIC_URL = '/static/'
 
 LOGOUT_REDIRECT_URL = 'home'
 LOGIN_REDIRECT_URL = 'home'
+LOGIN_URL = 'login'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

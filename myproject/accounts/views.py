@@ -1,11 +1,11 @@
-from django.contrib.auth import login as auth_login
+from django.contrib.auth import login as auth_login, get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 #from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
-from django.views.generic import UpdateView
+from django.views.generic import UpdateView, DetailView
 
 from .forms import SignUpForm
 
@@ -32,3 +32,13 @@ class UserUpdateView(UpdateView):
 
     def get_object(self):
         return self.request.user
+		
+#class UserProfileDetailView(DetailView):
+#	model = get_user_model()
+#	slug_field = "username"
+#	template_name = "user_detail.html"
+	
+#	def get_object(self):
+#		user = super(UserProfileDetailView, self).get_object(queryset)
+#		UserProfile.objects.get_of_create(user*user)
+#		return user

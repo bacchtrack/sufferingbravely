@@ -35,3 +35,10 @@ class Vote(models.Model):
     #def __unicode__(self):
     def __str__(self):
         return "%s voted %s" % (self.voter.username, self.link.title)
+
+#class UserProfile(models.Model):
+ #   user = models.OneToOneField(User, unique=True)
+  #  bio = models.TextField(null=True)
+
+   # def __str__(self): 
+    #    return "%s's profile" % self.user

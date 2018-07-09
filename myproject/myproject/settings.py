@@ -40,6 +40,11 @@ INSTALLED_APPS = [
     'accounts',
     'cbeancontent',
     'widget_tweaks',
+    'threadedcomments',
+    'django_comments',
+   # 'disqus'
+    'django.contrib.sites',
+   # 'django_social_share',
 ]
 
 MIDDLEWARE = [
@@ -61,6 +66,7 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                #'django.template.context_processors.request'
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
@@ -127,3 +133,11 @@ LOGIN_REDIRECT_URL = 'home'
 LOGIN_URL = 'login'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+COMMENTS_APP = 'threadedcomments'
+
+SITE_ID = 1
+
+DISQUS_API_KEY = 'RZrA2UdrzNgArWhCHyX1LwQoyiMJeej00mcM8DsXIk2Z493xuqrO6KzkCYk9qcGN'
+
+DISQUS_WEBSITE_SHORTNAME = 'http-caribbeancontent-com'

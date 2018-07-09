@@ -4,6 +4,9 @@ from django.contrib.auth.models import User
 from django.db.models import Count
 from django.urls import reverse
 
+from urllib.parse import urlparse
+from urllib.request import urlopen
+
 class LinkVoteCountManager(models.Manager):
     def get_queryset(self):
         return super(LinkVoteCountManager, self).get_queryset().annotate(votes=Count('vote')).order_by('-votes') #order by votes
@@ -13,7 +16,9 @@ class Link(models.Model):
     submitter = models.ForeignKey(User, on_delete=models.CASCADE)#the fuck this CASCADE does?
     submitted_on = models.DateTimeField(auto_now_add=True)
     rank_score = models.FloatField(default=0.0)
-    url = models.URLField("URL", max_length=250, blank=True)
+    url = models.URLField("URL", max_length=250, blank=True)#make unique
+    parsed_uri = urlparse(url.name)
+    domain = '{uri.scheme}://{uri.netloc}/'.format(uri=parsed_uri)
     description = models.TextField(blank=True)
 
     with_votes = LinkVoteCountManager()

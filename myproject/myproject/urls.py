@@ -21,6 +21,7 @@ from django.contrib.auth.decorators import login_required as auth
 #from django.conf.urls import url
 from accounts import views as accounts_views
 from cbeancontent import views
+#from django_comments import django_comments
 
 from cbeancontent.views import LinkListView
 from cbeancontent.views import LinkUpdateView
@@ -31,6 +32,8 @@ from cbeancontent.views import VoteFormView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    #path('comments/', django_comments.urls),
+
     path('signup/', accounts_views.signup, name='signup'),
     path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),

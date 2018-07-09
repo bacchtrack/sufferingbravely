@@ -1,5 +1,9 @@
 {% extends "base.html" %}
+{% load threadedcomments_tags %}
+
+
 {% block content %}
+<div class = "center" style="width: 850px;">
 <ol>
 {% for link in object_list %}
 <form method="post" action="{% url 'vote' %}" class="vote_form">
@@ -7,13 +11,43 @@
         {% csrf_token %}
         <input type='hidden' id="id_link" name="link" class="hidden_id" value="{{ link.pk }}"/>
         <input type='hidden' id="id_voter" name="voter" class="hidden_id" value="{{ user.pk }}"/>
-        <button>^</button><!-- change to up arrow -->
-        [{{link.votes}}]
+        <div style="width: 100%; display: table;">
+                <div style="display: table-row">
+                    <div style="width: 450px; display: table-cell;">
+
         <a href="{{link.url}}"><!--alternative: to link_detail-->
             <b>{{link.title}}<b>
         </a>
+        <br/>{{link.domain}}
+        <br/>{{link.description}}
+        
+
+        </div>
+
+        <div style="display: table-cell;"> 
+        <button>recommend</button>
+        [{{link.votes}}] 
+        |
+        <a href="#">
+        {% get_comment_count for link as comment_count  %}
+        {{ comment_count }} comment{{ comment_count|pluralize }}
+        </a>
+        |
+        <a href="https://twitter.com/home?status=I'm%20going%20to%20learn%20to%20Code...%20Come%20build%20an%20web%20apsp%20with%20me!%20%23CFE%20{{ link.url }}">
+            Share on Twitter
+            </a>
+            <br/><br/>by {{link.submitter}} at {{link.submitted_on}}
+        </div>
+
+    </div>
+
+</div>
+    
+     
     </li>
+    <br/>
 </form>
 {% endfor %}
 </ol>
+</div>
 {% endblock %}
